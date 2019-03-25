@@ -1,0 +1,76 @@
+.tinyButton {
+  height: 36px;
+  padding: 5px 10px;
+  outline: none;
+  border: none;
+  font-size: 14px;
+  transition: all .2s ease-in-out;
+}
+
+.tinyButtonRound {
+  border-radius: 4px;
+}
+
+@colorNormal: #fafafa;
+@colorNormalHover: lighten(@colorNormal, 5%);
+@colorNormalActive: darken(@colorNormal, 5%);
+.tinyButton-normal {
+  background-color: @colorNormal;
+  border: 1px solid #e5e5e5;
+  color: #262626;
+  &:hover { background-color: @colorNormalHover; }
+  &:active { background-color: @colorNormalActive; }
+}
+
+
+
+@colorPrimary: #00C1DE;
+@colorPrimaryHover: lighten(@colorPrimary, 5%);
+@colorPrimaryActive: darken(@colorPrimary, 5%);
+.tinyButton-primary {
+  background-color: @colorPrimary;
+  color: #ffffff;
+  &:hover { background-color: @colorPrimaryHover; }
+  &:active { background-color: @colorPrimaryActive; }
+}
+
+
+
+@colorWarning: #FFDE03;
+@colorWarningHover: lighten(@colorWarning, 5%);
+@colorWarningActive: darken(@colorWarning, 5%);
+.tinyButton-warning {
+  background-color: @colorWarning;
+  color: #ffffff;
+  &:hover { background-color: @colorWarningHover; }
+  &:active { background-color: @colorWarningActive; }
+}
+
+@colorError: #F15533;
+@colorErrorHover: lighten(@colorError, 5%);
+@colorErrorActive: darken(@colorError, 5%);
+.tinyButton-error {
+  background-color: @colorError;
+  color: #ffffff;
+  &:hover { background-color: @colorErrorHover; }
+  &:active { background-color: @colorErrorActive; }
+}
+
+
+@colorDisabled: #f2f2f2;
+.tinyButton[disabled], .tinyButtonDisabled {
+  background-color: @colorDisabled;
+  color: #bfbfbf;
+  &:hover { background-color: @colorDisabled}
+  &:active { background-color: @colorDisabled; }
+}
+
+.tinyButton-ghost {
+  background-color: transparent;
+  border: 1px solid #8C8C8C;
+  color: #D8D8D8;
+  &:hover { background-color: #ffffff; color: #595959; border-color: #ffffff; }
+  &:active, &.tinyButtonSelected { background-color: #ffffff; color: #595959; border-color: #ffffff; }
+}
+
+.tinyButtonLoading {}

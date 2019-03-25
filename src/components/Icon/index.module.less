@@ -1,0 +1,39 @@
+
+.tinyIcon {
+  display: inline-block;
+  margin-right: 2px;
+  vertical-align: -1px;
+}
+
+.tinyIcon_normal {
+}
+
+.tinyIcon_large {
+  font-size: 24px;
+  vertical-align: -3px;
+  margin-right:4px;
+}
+
+
+@keyframes loadingCircle {
+  0%{
+    transform-origin:50% 50%;
+    transform:rotate(0deg)
+  }
+  to{
+    transform-origin:50% 50%;
+    transform:rotate(1turn)
+  }
+}
+:global {
+  .voip-icon-loading {
+    :local {
+      animation: loadingCircle 1s infinite linear;
+    }
+  }
+  .voip-icon-call-connecting,
+  .voip-icon-call-ringing,
+  .voip-icon-call-active {
+    font-size: 24px;
+  }
+}

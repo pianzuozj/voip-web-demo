@@ -1,0 +1,11 @@
+{
+  "name": "aliyun-voip-web-status-bar",
+  "version": "0.0.1",
+  "description": "阿里云voip web sdk 电话条",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

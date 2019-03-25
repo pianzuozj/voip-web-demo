@@ -1,0 +1,61 @@
+.debugPanel {
+  list-style-type: none;
+  position: fixed;
+  left:0;
+  top: 0;
+  bottom:0;
+  font-size: 12px;
+  padding: 12px;
+  margin: 0;
+  //background-color: rgba(0,0,0,.1);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  pointer-events: none;
+  width: 100%;
+  transition: background-color .3s ease-in-out, z-index .3s ease-in-out;
+  transition-delay: .2s;
+  z-index: 7;
+  &:hover {
+    background-color: rgba(0,0,0,.5);
+    z-index: 20 !important;
+    transition: background-color .3s ease-in-out;
+    transition-delay: 0s;
+  }
+  li {
+    font-family: Consolas;
+    text-align: left;
+    > .label {
+      margin: 0;
+      float: left;
+      margin-right: 10px;
+      color: #ffff00;
+      font-weight: bold;
+      line-height: 12px;
+      &:after {
+        content: ':'
+      }
+    }
+    > .value {
+      overflow: hidden;
+      margin: 0;
+      color: #0FF;
+      line-height: 12px;
+      > div {
+        background-color: rgba(0,0,0,0);
+        &:hover {
+          color: #fff;
+          background-color: rgba(0,0,0,.5);
+          transition: background-color .2s ease-in;
+        }
+        > span {
+          pointer-events: visible;
+          word-break: break-all;
+          display: inline-block;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: pre-wrap;
+        }
+      }
+    }
+  }
+}

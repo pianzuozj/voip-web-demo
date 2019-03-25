@@ -1,0 +1,52 @@
+.demoHeader{
+  padding: 0 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #595959;
+  color: #fff;
+  justify-content: space-between;
+}
+.demoHeader h1 {
+  padding: 0;
+  margin: 0;
+  height: 60px;
+  line-height: 60px;
+  font-size: 18px;
+  font-weight: normal;
+}
+.demoHeader .state {
+  height: 60px;
+  font-size: 12px;
+  border-left: 1px solid #8C8C8C;
+  padding-left: 22px;
+  width: 90px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.demoHeader .stateLight {
+  font-size: 12px;
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
+  background-color: #F54743;
+  border-radius: 100%;
+}
+
+.demoHeader .stateLight-idle {
+    background-color: #F54743;
+}
+
+.demoHeader .stateLight-connecting {
+    background-color: #FFDE03;
+}
+
+.demoHeader .stateLight-available {
+    background-color: #35B24B;
+}
+
+.demoHeader .stateLight-unavailable {
+    background-color: #F54743;
+}

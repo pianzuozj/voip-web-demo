@@ -1,0 +1,49 @@
+.app {
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch;
+    background-color: #657C99;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.app:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, .5);
+  opacity: 0;
+  z-index: 9;
+  transition: opacity .3s ease-in-out;
+  display: none;
+}
+.app.mask:before {
+  opacity: 1;
+  display: block;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.error-message {
+    color: #F15533;
+    font-size: 12px;
+    text-align: left;
+    padding: 0 10px;
+}

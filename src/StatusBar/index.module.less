@@ -1,0 +1,135 @@
+.statusBar{
+  width: 640px;
+  height: 62px;
+  font-size: 12px;
+  padding: 0 16px;
+  background-color: #595959;
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  color: #fff;
+  z-index: 14;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.statusBarHide {
+  top: -100px;
+  opacity: 0;
+  transition: top 0.3s ease-out, opacity 0.3s ease-out;
+  transition-delay: 2s;
+}
+
+.callee {
+  display: flex;
+  flex-direction: row;
+}
+
+.calleeAvatar {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 100%;
+  margin-right: 8px;
+}
+.calleeTitle {
+  color: #d8d8d8;
+}
+.calleeNumber {
+  font-weight: bold;
+}
+.callState {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 334px;
+  height: 50px;
+  padding: 0 16px;
+  margin: 0 12px;
+  background-color: #262626;
+  border-radius: 4px;
+}
+.callState_idle {
+  .callStateText {
+    color: #F54743;
+  }
+}
+.callState_ringing {
+  .callStateText {
+    color: #FFDE03;
+  }
+}
+.callState_connecting {
+  .callStateText {
+    color: #F54743;
+  }
+}
+.callState_active {
+  .callTime {
+    color: #fff;
+  }
+  .callStateText {
+    color: #91F729;
+  }
+}
+
+.callStateText {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.callStateSymbol{
+  color: #bfbfbf;
+}
+
+.callTime {
+  font-size: 18px;
+  font-family: 'Consolas';
+  color: #595959;
+}
+.signalState {
+  display: flex;
+  align-items: center;
+  border-left: 1px solid #595959;
+  height: 40px;
+  padding-left: 17px;
+}
+.signalStateSymbol {
+  width: 18px;
+  height: 14px;
+  margin-right: 12px;
+  background: url(./images/signal-state.png) no-repeat 0 0;
+  background-size: cover;
+}
+.signalStateSymbol_low {
+  background-position-y: -29px;
+}
+.signalStateSymbol_medium {
+  background-position-y: -15px;
+}
+.signalStateSymbol_high {
+  background-position-y: 0;
+}
+.actionArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 120px;
+}
+
+.actionArea button {
+  height: 32px;
+  width: 54px;
+  padding: 0;
+  font-size:12px;
+}
+
+.hangUp{
+  background-color: #F15533;
+  color: #fff;
+}
