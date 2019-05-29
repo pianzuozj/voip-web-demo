@@ -24,22 +24,24 @@
   transition-delay: 2s;
 }
 
-.callee {
+.participantCard {}
+
+.participant {
   display: flex;
   flex-direction: row;
 }
 
-.calleeAvatar {
+.participantAvatar {
   width: 32px;
   height: 32px;
   line-height: 32px;
   border-radius: 100%;
   margin-right: 8px;
 }
-.calleeTitle {
+.participantName {
   color: #d8d8d8;
 }
-.calleeNumber {
+.participantNumber {
   font-weight: bold;
 }
 .callState {
@@ -57,6 +59,11 @@
 .callState_idle {
   .callStateText {
     color: #F54743;
+  }
+}
+.callState_oncall {
+  .callStateText {
+    color: #FFDE03;
   }
 }
 .callState_ringing {
@@ -81,6 +88,7 @@
 .callStateText {
   font-weight: bold;
   font-size: 14px;
+  white-space: nowrap;
 }
 
 .callStateSymbol{
@@ -119,7 +127,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
+  height: 50px;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.statusBar.onAudioCall {
+  width: 640px + 100px;
+}
+
+.statusBar.onAudioCall .callState {
+  width: 334px + 64px;
 }
 
 .actionArea button {
@@ -129,7 +149,35 @@
   font-size:12px;
 }
 
-.hangUp{
-  background-color: #F15533;
-  color: #fff;
+.enableRecordOnCall {
+  width: 100%;
+  text-align: right;
+  input {
+    margin: 0 5px 0 0;
+  }
+
+  label {
+
+  }
+}
+
+.incomingCallNotify {
+  position: absolute;
+  right: 0;
+  bottom: -40px;
+  color: #000;
+  .answerCall {
+    cursor: pointer;
+    background: yellow;
+    border-radius: 4px;
+    padding: 5px 10px;
+  }
+  .rejectCall {
+    cursor: pointer;
+    position: absolute;
+    right: -20px;
+    font-size: 18px;
+    top: 4px;
+    color: white;
+  }
 }

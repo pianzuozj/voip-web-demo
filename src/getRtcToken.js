@@ -1,5 +1,5 @@
-import {v4 as uuid} from 'uuid'
-import * as Crypto from 'crypto-js'
+import { v4 as uuid } from "uuid";
+import * as Crypto from "crypto-js";
 
 /**
  * 按Key排序Object
@@ -7,18 +7,20 @@ import * as Crypto from 'crypto-js'
  * @param sortWith
  */
 function sortObjectByKey(object, sortWith) {
-  let keys
-  let sortFn
+  let keys;
+  let sortFn;
 
-  if (typeof sortWith === 'function') {
-    sortFn = sortWith
+  if (typeof sortWith === "function") {
+    sortFn = sortWith;
   } else {
-    keys = sortWith
+    keys = sortWith;
   }
-  return (keys || []).concat(Object.keys(object).sort(sortFn)).reduce(function (total, key) {
-    total[key] = object[key]
-    return total
-  }, Object.create(null))
+  return (keys || [])
+    .concat(Object.keys(object).sort(sortFn))
+    .reduce(function(total, key) {
+      total[key] = object[key];
+      return total;
+    }, Object.create(null));
 }
 
 /**
@@ -28,15 +30,15 @@ function sortObjectByKey(object, sortWith) {
  */
 function encodePopURI(str) {
   return encodeURIComponent(str)
-    .replace(/!/g, '%21')
-    .replace(/'/g, '%27')
-    .replace(/\(/g, '%28')
-    .replace(/\)/g, '%29')
-    .replace(/\*/g, '%2A')
-    .replace(/%20/g, '+')
-    .replace(/\+/g, '%20')
-    .replace(/\*/g, '%2A')
-    .replace(/%7E/g, '~')
+    .replace(/!/g, "%21")
+    .replace(/'/g, "%27")
+    .replace(/\(/g, "%28")
+    .replace(/\)/g, "%29")
+    .replace(/\*/g, "%2A")
+    .replace(/%20/g, "+")
+    .replace(/\+/g, "%20")
+    .replace(/\*/g, "%2A")
+    .replace(/%7E/g, "~");
 }
 
 /**
@@ -47,21 +49,22 @@ function encodePopURI(str) {
  */
 function fetchPopContent(url, body) {
   return fetch(url, {
-    method: 'POST',
+    method: "POST",
     body: body,
-    credentials: 'omit',
+    credentials: "omit",
     headers: {
-      'content-type': 'application/x-www-form-urlencoded'
-    },
-  }).then(res => res.json())
-    .then((json) => {
-      if (json.Code === 'OK') {
-        return JSON.parse(json.Module)
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  })
+    .then(res => res.json())
+    .then(json => {
+      if (json.Code === "OK") {
+        return JSON.parse(json.Module);
       }
-      const error = new Error(json.Message || '未知错误')
-      error.code = json.Code
-      throw error
-    })
+      const error = new Error(json.Message || "未知错误");
+      error.code = json.Code;
+      throw error;
+    });
 }
 
 /**
@@ -79,34 +82,42 @@ export async function popRequest(
   accessKeySecret,
   domain,
   params,
-  security = true,
+  security = true
 ) {
-  const method = 'POST'
+  const method = "POST";
   const apiParams = sortObjectByKey(
-    Object.assign({
-      'SignatureMethod': 'HMAC-SHA1',
-      'SignatureNonce': uuid().replace(/-/g,''),
-      'SignatureVersion': '1.0',
-      'AccessKeyId': accessKeyId,
-      'Timestamp': new Date().toISOString().replace(/\.\d+Z$/g, 'Z'),
-      'Format': 'JSON',
-    }, params))
+    Object.assign(
+      {
+        SignatureMethod: "HMAC-SHA1",
+        SignatureNonce: uuid().replace(/-/g, ""),
+        SignatureVersion: "1.0",
+        AccessKeyId: accessKeyId,
+        Timestamp: new Date().toISOString().replace(/\.\d+Z$/g, "Z"),
+        Format: "JSON"
+      },
+      params
+    )
+  );
 
-  let sortedQueryStringTmp = Object.keys(apiParams).reduce((result, key) => {
-    const value = apiParams[key]
-    return `${result}&${encodePopURI(key)}=${encodePopURI(value)}`
-  }, '').substr(1)
+  let sortedQueryStringTmp = Object.keys(apiParams)
+    .reduce((result, key) => {
+      const value = apiParams[key];
+      return `${result}&${encodePopURI(key)}=${encodePopURI(value)}`;
+    }, "")
+    .substr(1);
 
-  const stringToSign = `${method}&%2F&${encodePopURI(sortedQueryStringTmp)}`
+  const stringToSign = `${method}&%2F&${encodePopURI(sortedQueryStringTmp)}`;
 
-  const sign = Crypto.HmacSHA1(stringToSign, `${accessKeySecret}&`).toString(Crypto.enc.Base64)
+  const sign = Crypto.HmacSHA1(stringToSign, `${accessKeySecret}&`).toString(
+    Crypto.enc.Base64
+  );
   // const sign = base64_encode(hash_hmac("sha1", stringToSign, `${accessKeySecret}&`, true));
 
-  const signature = encodePopURI(sign)
+  const signature = encodePopURI(sign);
 
-  const url = `${(security ? 'https' : 'http')}://${domain}/`
+  const url = `${security ? "https" : "http"}://${domain}/`;
 
-  return fetchPopContent(url, `${sortedQueryStringTmp}&Signature=${signature}`)
+  return fetchPopContent(url, `${sortedQueryStringTmp}&Signature=${signature}`);
 }
 
 /**
@@ -118,20 +129,24 @@ export async function popRequest(
  * @param deviceId
  * @returns {Promise<boolean|object>}
  */
-export default async function getRtcToken(accessKeyId, accessKeySecret, userId, deviceId) {
+export default async function getRtcToken(
+  accessKeyId,
+  accessKeySecret,
+  userId,
+  deviceId
+) {
   return popRequest(
     accessKeyId,
     accessKeySecret,
-    'dyvmsapi.aliyuncs.com',
+    "dyvmsapi.aliyuncs.com",
     {
-      "UserId": userId,
-      "DeviceId": deviceId,
-      "IsCustomAccount": "false",
-      "Action": "GetRtcToken",
-      "RegionId": "cn-hangzhou",
-      "Version": "2017-05-25",
+      UserId: userId,
+      DeviceId: deviceId,
+      IsCustomAccount: "false",
+      Action: "GetRtcToken",
+      RegionId: "cn-hangzhou",
+      Version: "2017-05-25"
     },
     true
-  )
+  );
 }
-
